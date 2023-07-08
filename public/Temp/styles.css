@@ -1,16 +1,15 @@
 h1, h2, h3, h4, h5 {
   line-height: 1.5;
 }
-
 p {
   color: #8B8B8B;
 }
-
 a {
   text-decoration: none;
 }
 
 /* BARRA DE NAVEGAÇÃO */
+
 .navbar {
   background-color: darkslategrey;
 }
@@ -18,21 +17,18 @@ a {
 /* BANNER PRINCIPAL */
 
 #banner {
-  background-color: #323338;
-  color: white;
-  padding: 220px 0 160px 0;
+	background-color: #323338;
+	color: white;
+	padding: 220px 0 160px 0;
 }
-
 #banner img {
   width: 100%;
 }
-
 .bloco {
   display: table-cell;
   vertical-align: middle;
-  height:400px;
+	height:400px;
 }
-
 .btn-app {
   margin: 2% 2% 5% 0;
 }
@@ -42,24 +38,19 @@ a {
 #vantagens {
 padding: 10% 10%;
 }
-
 .vermelho {
   color: red;
 }
-
 .azul {
   color: #0D6EFD;
 }
-
 .verde {
   color: teal;
 }
-
 .box{
   text-align: center;
   padding: 5%;
 }
-
 .icon {
   margin-bottom: 5px;
 }
@@ -74,7 +65,6 @@ padding: 10% 10%;
   padding: 20% 15%;
   text-align: center;
 }
-
 #depoimentos img {
   border-radius: 50%;
   width: 10%;
@@ -87,11 +77,9 @@ padding: 10% 10%;
   padding: 5% 0% 15%;
   color: #323338;
 }
-
 #planos-e-precos .titulo {
   margin-top: 5%;
 }
-
 #planos-e-precos .card {
   margin-top: 5%;
 }
@@ -99,14 +87,21 @@ padding: 10% 10%;
 /* MOBILE */
 
 #mobile {
-  background-color: #323338;
-  color: white;
-  padding: 180px 0 160px 0;
+	background-color: #323338;
+	color: white;
+	padding: 180px 0 160px 0;
 }
-
 #mobile img {
   width: 100%;
 }
+/* .bloco {
+  display: table-cell;
+  vertical-align: middle;
+	height:400px;
+}
+.btn-app {
+  margin: 2% 2% 5% 0;
+} */
 
 /* CONTATO (RODAPÉ) */
 
@@ -115,7 +110,6 @@ padding: 10% 10%;
   text-align: center;
   background-color: #000;
 }
-
 .back-to-top {
   cursor: pointer;
   position: fixed;
@@ -123,7 +117,6 @@ padding: 10% 10%;
   right: 20px;
   display:none;
 }
-
 .footer-links {
   color: white;
 }
@@ -133,37 +126,10 @@ padding: 10% 10%;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   color:darkslategray;
 }
-
 .card {
   width: 240px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   margin-left: 20px;
   color: darkmagenta;
 }
-
-.bloco {
-  display: table-cell;
-  vertical-align: middle;
-  height:400px;
-}
-
-.btn-app {
-  margin: 2% 2% 5% 0;
-}
-
-*/
-
-/*
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;900&family=Ubuntu:wght@300;400;500;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
-@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"); 
-
-body{
-  overflow-x: hidden;
-  background-color: #F1F5F8;
-  font-family: "Roboto Slab";
-  color: #000;
-}
-
 */
