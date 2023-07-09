@@ -1,8 +1,8 @@
 import Menu from "../../components/menu";
-import Search from "../../components/search";
-import './clientes.css';
+// import Search from "../../components/search";
+import './profile.css';
 
-function Clientes() {
+function Profile() {
   return (
     <div className="container-fluid">
       <div className="row flex-nowrap">
@@ -12,18 +12,13 @@ function Clientes() {
         </div>
 
         <div className="col py-3 me-3">
-          <div className="mb-5">
-            <Search text="O que vc procura?" />
-          </div>
-
           <div className="d-flex justify-content-between">
-            <h1>CLIENTES</h1>
+            <h1>DADOS DO DELIVERY</h1>
           </div>
-
         </div>
       </div>
     </div>
   )
 }
 
-export default Clientes;
+export default Profile;

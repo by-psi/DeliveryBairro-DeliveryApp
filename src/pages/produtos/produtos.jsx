@@ -1,5 +1,5 @@
 import Menu from "../../components/menu";
-import Search from "../../components/search";
+// import Search from "../../components/search";
 import './produtos.css';
 
 function Produtos() {
@@ -12,14 +12,9 @@ function Produtos() {
         </div>
 
         <div className="col py-3 me-3">
-          <div className="mb-5">
-            <Search text="O que vc procura?" />
-          </div>
-
           <div className="d-flex justify-content-between">
-            <h1>PRODUTOS</h1>
+            <h1>CADASTRO DE PRODUTOS</h1>
           </div>
-
         </div>
       </div>
     </div>

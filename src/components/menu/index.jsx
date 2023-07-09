@@ -26,15 +26,15 @@ function Menu(props) {
           </li>
 
           <li className="nav-item">
-            <Link to="/clientes" className={props.page === "clientes" ? activeLink : inactiveLink}>
-              <i className="fs-4 bi-wallet2"></i> <span className="ms-1 d-none d-sm-inline">Clientes</span>
-            </Link>
-          </li>
-
-          <li className="nav-item">
             <a href="/produtos" className={props.page === "produtos" ? activeLink : inactiveLink}>
               <i className="fs-4 bi-tags"></i> <span className="ms-1 d-none d-sm-inline">Produtos</span>
             </a>
+          </li>
+
+          <li className="nav-item">
+            <Link to="/profile" className={props.page === "profile" ? activeLink : inactiveLink}>
+              <i className="fs-4 bi-wallet2"></i> <span className="ms-1 d-none d-sm-inline">Profile</span>
+            </Link>
           </li>
 
           <li className="nav-item">
@@ -44,7 +44,7 @@ function Menu(props) {
           </li>
 
           <li className="nav-item">
-            <a href="#" className={props.page === "logout" ? activeLink : inactiveLink}>
+            <a href="/" className={props.page === "logout" ? activeLink : inactiveLink}>
               <i className="fs-4 bi-box-arrow-left"></i> <span className="ms-1 d-none d-sm-inline">Sair (LogOut)</span>
             </a>
           </li>
