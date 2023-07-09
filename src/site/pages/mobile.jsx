@@ -14,7 +14,7 @@ function Mobile() {
               </div>
             </div>
             <div className="col-lg-6">
-              <img src="imagens/mobile.jpg" width="800px" alt="deliverybairro.com"/>
+              <img src="images/mobile.jpg" width="800px" alt="deliverybairro.com"/>
             </div>
 
           </div>
