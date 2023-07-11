@@ -20,20 +20,20 @@ function Menu(props) {
         <ul className="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
 
           <li className="nav-item">
-            <Link to="/dashboard" className={props.page === "dashboard" ? activeLink : inactiveLink}>
-              <i className="fs-4 bi-bar-chart"></i> <span className="ms-1 d-none d-sm-inline">Dashboard</span>
+            <Link to="/app/pedidos" className={props.page === "pedidos" ? activeLink : inactiveLink}>
+              <i className="fs-4 bi-bar-chart"></i> <span className="ms-1 d-none d-sm-inline">Pedidos</span>
             </Link>
           </li>
 
           <li className="nav-item">
-            <a href="/produtos" className={props.page === "produtos" ? activeLink : inactiveLink}>
+            <a href="/app/produtos" className={props.page === "produtos" ? activeLink : inactiveLink}>
               <i className="fs-4 bi-tags"></i> <span className="ms-1 d-none d-sm-inline">Produtos</span>
             </a>
           </li>
 
           <li className="nav-item">
-            <Link to="/profile" className={props.page === "profile" ? activeLink : inactiveLink}>
-              <i className="fs-4 bi-wallet2"></i> <span className="ms-1 d-none d-sm-inline">Profile</span>
+            <Link to="/app/delivery" className={props.page === "delivery" ? activeLink : inactiveLink}>
+              <i className="fs-4 bi-wallet2"></i> <span className="ms-1 d-none d-sm-inline">Delivery</span>
             </Link>
           </li>
 
