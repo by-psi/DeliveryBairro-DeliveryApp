@@ -1,42 +1,47 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link, redirect } from 'react-router-dom';
-import { Auth, DataStore } from 'aws-amplify';
-import { Delivery } from "../../models";
+import { firebase_app } from '../config/config.firebase';
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getDatabase, ref, set } from "firebase/database";
 import './novo.css';
 
 function Novo() {
-  const [nome, setNome] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirm_password, setConfirmPassword] = useState("");
-  const [message, setMessage] = useState("");
-  const [result, setResult] = useState("");
+  let vEmail = localStorage.getItem("email");
+  let vDelivery = localStorage.getItem("delivery");
+  let vToken = localStorage.getItem("token");
 
-  async function signUp() {
-    const username = email;
-    setMessage("");
-    if (password !== confirm_password) {
-      setMessage('As senhas não conferem! Digite-as novamente.');
+  const auth = getAuth(firebase_app);
+  const database = getDatabase(firebase_app);
+
+  const [email, setEmail] = useState(vEmail);
+  const [password, setPassword] = useState('');
+  const [confirm_password, setConfirmPassword] = useState('');
+  const [message, setMessage] = useState('');
+  const [result, setResult] = useState('');
+
+  async function RegisterNewUser(delivery, token) {
+    setMessage('');
+
+    if (!email || !password) {
+      setMessage('Favor preencher todos os campos!');
       return;
     }
 
-    try {
-      const { user } = await Auth.signUp({
-        "username": username,
-        "password": password,
-        attributes: {
-          "email": email,
-        },
+    if (password !== confirm_password) {
+      setMessage('As senhas não conferem! Digite-as novamente');
+      return;
+    }
+
+    await createUserWithEmailAndPassword(auth, email, password).then(async(value) => {
+      let uid = value.user.uid;
+      console.log("UserID: ", uid);
+      set(ref(database, 'users/' + uid), {
+        delivery: delivery,
+        token: token
       });
-      console.log(user);
-      await DataStore.save(
-        new Delivery({
-          "Nome": nome,
-          "TokenADM": user.id
-        })
-      );
       setResult('S');
-    } catch (error) {
+    }).catch((error) => {
+      console.log(error.code, error.message);
       setResult('N');
       if (error.message === 'Password should be at least 6 characters') {
         setMessage('A senha deverá conter pelo menos 6 caracteres'); 
@@ -49,8 +54,9 @@ function Novo() {
       } else {
         setMessage('Erro ao criar conta: ' + error.message);
       }
-    }
+    });
   }
+
   var ano = new Date().getFullYear();
 
   return (
@@ -61,8 +67,9 @@ function Novo() {
         </a>
 
         <div className="form-floating mt-2">
-          <input onChange={e => setNome(e.target.value)} type="text" className="form-control" id="nome" value={nome} placeholder="Nome do Delivery" />
-          <label htmlFor="nome">Nome</label>
+          <input type="text" className="form-control" id="delivery" value={vDelivery} readOnly />
+          <input type="hidden" id="token" name="token" value={vToken} />
+          <label htmlFor="delivery">Delivery</label>
         </div>
 
         <div className="form-floating mt-2">
@@ -84,9 +91,9 @@ function Novo() {
           <Link to="/app" className="mx-3">Já tenho uma conta</Link>
         </div>
 
-        <button onClick={e => signUp()} className="w-100 btn btn-lg btn-dark mt-2" type="button">REGISTRAR</button>
+        <button onClick={e => RegisterNewUser(vDelivery, vToken)} className="w-100 btn btn-lg btn-dark mt-2" type="button">CADASTRAR ACESSO</button>
         {message.length > 0 ? <div className="alert alert-danger mt-2" role="alert">{message}</div> : null}
-        {result === 'S' ? redirect("/app/menu/pedidos") : null}
+        {result === 'S' ? redirect('/app/pedidos') : null}
         <p>&copy; 1999-{ano} PSI-SOFTWARE</p>
       </form>
     </div>

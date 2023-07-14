@@ -38,7 +38,7 @@ function Menu(props) {
           </li>
 
           <li className="nav-item">
-            <a href="#" className={props.page === "config" ? activeLink : inactiveLink}>
+            <a href="/app/config" className={props.page === "config" ? activeLink : inactiveLink}>
               <i className="fs-4 bi-gear"></i> <span className="ms-1 d-none d-sm-inline">Configurações</span>
             </a>
           </li>
