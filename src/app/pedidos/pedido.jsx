@@ -7,14 +7,14 @@ export default function Pedido(props){
 
   const [status, setStatus] = useState(props.Status);
   const [visible, setVisible] = useState(true);
-
+  
   function AlterarStatus(codigo) {
-    api.put(`/pedidos/status/${props.PedidoID}`, {status: codigo})
+    api.put(`/pedido/status/${props.PedidoID}`, {status: codigo})
     .then((response) => {
       // console.log(response);
       setStatus(codigo);
-      SendNotification(props.token, props.PedidoID, status);
-      if (status === 'F') {
+      // SendNotification(props.token, props.PedidoID, status);
+      if (status === "FINALIZADO") {
         setVisible(false)
       }
     })
@@ -23,29 +23,29 @@ export default function Pedido(props){
     });
   }
 
-  async function SendNotification(token, PedidoID, codigo_status) {
+  // async function SendNotification(token, id, codigo_status) {
 
-    const message = {
-      "to": token,
-      "sound": "default",
-      "title": "deliverybairro.com",
-      "body": "Pedido #"+PedidoID+" atualizado em "+new Date().toLocaleString(),
-      "data": {"PedidoID": PedidoID, "status": codigo_status}
-    };
+  //   const message = {
+  //     "to": token,
+  //     "sound": "default",
+  //     "title": "deliverybairro.com",
+  //     "body": "Pedido #"+id+" atualizado em "+new Date().toLocaleString(),
+  //     "data": {"PedidoID": id, "status": codigo_status}
+  //   };
 
-    await fetch("https://exp.host/--/api/v2/push/send", {
-      method: "POST",
-      referrerPolicy: "strict-origin-when-cross-origin",
-      mode: "no-cors",
-      headers: {
-        'Accept': '*',
-        "Accept-encoding": "gzip, deflate",
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(message),
-    });
-  }
+  //   await fetch("https://exp.host/--/api/v2/push/send", {
+  //     method: "POST",
+  //     referrerPolicy: "strict-origin-when-cross-origin",
+  //     mode: "no-cors",
+  //     headers: {
+  //       'Accept': '*',
+  //       "Accept-encoding": "gzip, deflate",
+  //       "Access-Control-Allow-Origin": "*",
+  //       "Content-Type": "application/json"
+  //     },
+  //     body: JSON.stringify(message),
+  //   });
+  // }
 
   return !visible ? <></> : 
   <div className='d-flex justify-content-between shadow-sm pedido'>
@@ -54,13 +54,13 @@ export default function Pedido(props){
       <span className='badge rouded-pill bg-dark ms-2'>{props.Data}</span>
 
       {status === "NOVO" ? <span className="badge rouded-pill bg-danger ms-2">NOVO</span> : null}
-      {status === "AGUARDANDO" ? <span className="badge rouded-pill bg-warning ms-2">AGUARDANDO</span> : null}
-      {status === "PREPARANDO" ? <span className="badge rouded-pill bg-success ms-2">PREPARANDO</span> : null}
-      {status === "PRONTO_PARA_RETIRADA" ? <span className="badge rouded-pill bg-primary ms-2">PRONTO PARA RETIRADA</span> : null}
-      {status === "SAIU_PARA_ENTREGA" ? <span className="badge rouded-pill bg-primary ms-2">SAIU PARA ENTREGA</span> : null}
+      {status === "AGUARDANDO" ? <span className="badge rouded-pill bg-primary ms-2">AGUARDANDO</span> : null}
+      {status === "PREPARANDO" ? <span className="badge rouded-pill bg-secondary ms-2">PREPARANDO</span> : null}
+      {status === "PRONTO_PARA_RETIRADA" ? <span className="badge rouded-pill bg-success ms-2">PRONTO PARA RETIRADA</span> : null}
+      {status === "SAIU_PARA_ENTREGA" ? <span className="badge rouded-pill bg-warning ms-2">SAIU PARA ENTREGA</span> : null}
       {status === "RECEBIDO" ? <span className="badge rouded-pill bg-dark ms-2">RECEBIDO</span> : null}
-      {status === "FINALIZADO" ? <span className="badge rouded-pill bg-dark ms-2">FINALIZADO</span> : null}
-      {status === "CANCELADO" ? <span className="badge rouded-pill bg-secondary ms-2">CANCELADO</span> : null}
+      {status === "FINALIZADO" ? <span className="badge rouded-pill bg-info ms-2">FINALIZADO</span> : null}
+      {status === "CANCELADO" ? <span className="badge rouded-pill bg-danger ms-2">CANCELADO</span> : null}
 
       <small className='d-block mt-1 text-secondary'>{props.Cliente} - {props.Endereco}</small>
       <small className='d-block mt-1 text-secondary'>{props.token}</small>

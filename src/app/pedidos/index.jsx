@@ -6,9 +6,14 @@ import './index.css';
 import api from '../config/config.mysql';
 
 export default function Pedidos() {
-  let vDelivery = "SANDUBA DO ZÉ"; // localStorage.getItem("delivery");
-  let vToken = 1002; // localStorage.getItem("token");
+  const vDelivery = "SANDUBA DO ZÉ"; // localStorage.getItem("delivery");
+  const vToken = 1002; // localStorage.getItem("token");
+
   const [pedidos, setPedidos] = useState(null);
+
+  useEffect(() => {
+    ListarPedidos();
+  }, [pedidos])
 
   async function ListarPedidos() {
     if (vToken) {
@@ -24,11 +29,6 @@ export default function Pedidos() {
     }
   }
 
-  useEffect(() => {
-    ListarPedidos();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pedidos])
-
   return  <>
     <div className="container-fluid">
       <div className="row flex-nowrap">
@@ -39,7 +39,7 @@ export default function Pedidos() {
 
         <div className="col py-3 me-3">
             <h1>FILA DE PEDIDOS - {vToken} {vDelivery}</h1>
-            <button onClick={ListarPedidos()} className="btn m-2 btn-primary">ATUALIZAR FILA DE PEDIDOS</button>
+            <button onClick={ListarPedidos} className="btn m-2 btn-primary">ATUALIZAR</button>
             <div className="m-2 mt-2">
               {
                 pedidos?.map((pedido) => {
@@ -63,4 +63,4 @@ export default function Pedidos() {
   </>
 }
 
-
+// eslint-disable-next-line react-hooks/exhaustive-deps

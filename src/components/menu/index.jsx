@@ -6,7 +6,7 @@ import logomarca from '../../assets/logomarca.png';
 
 function Menu(props) {
   const activeLink    = "nav-link align-middle px-0";
-  const inactiveLink  = "nav-link align-middle px-0 link-secondary";
+  const inactiveLink  = "nav-link align-middle px-0 link-light";
 
   return (
     <div className="menu" id="menu">
