@@ -109,7 +109,7 @@ function Planos() {
                 <div className="card-body">
                   <h2>R$ 0,00</h2>  
                   <p>até 03 produtos</p>
-                  <p>Degustação (teste)<br/>sem suporte.</p>
+                  <p>Degustação (para testar)<br/>sem suporte.</p>
                   <a className="btn btn-lg btn-outline-primary" data-bs-toggle="modal" href="#md_assinatura" role="button">Assine Agora</a>
                 </div>
               </div>
@@ -123,7 +123,7 @@ function Planos() {
                 <div className="card-body">
                   <h2>R$ 89,90</h2>  
                   <p>Até 10 produtos</p>
-                  <p>Suporte Offline (por e-mail)+<br/>Tutoriais Online</p>
+                  <p>Suporte Offline (básico)+<br/>Via E-mail</p>
                   <a className="btn btn-lg btn-outline-primary" data-bs-toggle="modal" href="#md_assinatura" role="button">Assine Agora</a>
                 </div>
               </div>
@@ -137,7 +137,7 @@ function Planos() {
                 <div className="card-body">
                   <h2>R$ 189,90</h2>  
                   <p>Até 50 produtos</p>
-                  <p>Suporte Online (acesso remoto)+<br/>publicidade no Google Ads*</p>
+                  <p>Suporte Online (acesso remoto)+<br/>Publicidade no Google Ads*</p>
                   <a className="btn btn-lg btn-outline-primary" data-bs-toggle="modal" href="#md_assinatura" role="button">Assine Agora</a>
                 </div>
               </div>
@@ -147,7 +147,7 @@ function Planos() {
           <div className="row text-center">
             <div className="titulo">
               <h3>(*) Google Ads</h3>
-              <p>Promova o seu delivery em sua região através do nosso Markting Digital c/ Google Ads.<br/>Outros planos e mais informações, por favor entre em contato conosco.</p>
+              <p>Promova o seu Delivery em sua região através do nosso Markting Digital c/ Google Ads.<br/>Outros planos e informações, por favor entre em contato conosco.</p>
             </div>
           </div>
 
