@@ -108,7 +108,7 @@ function Planos() {
                 </div>
                 <div className="card-body">
                   <h2>R$ 0,00</h2>  
-                  <p>até 03 produtos</p>
+                  <p>Até 03 produtos</p>
                   <p>Degustação (para testar)<br/>sem suporte.</p>
                   <a className="btn btn-lg btn-outline-primary" data-bs-toggle="modal" href="#md_assinatura" role="button">Assine Agora</a>
                 </div>
@@ -123,7 +123,7 @@ function Planos() {
                 <div className="card-body">
                   <h2>R$ 89,90</h2>  
                   <p>Até 10 produtos</p>
-                  <p>Suporte Offline (básico)+<br/>Via E-mail</p>
+                  <p>Suporte Offline (via e-mail)+<br/>Documentação Online</p>
                   <a className="btn btn-lg btn-outline-primary" data-bs-toggle="modal" href="#md_assinatura" role="button">Assine Agora</a>
                 </div>
               </div>
@@ -137,7 +137,7 @@ function Planos() {
                 <div className="card-body">
                   <h2>R$ 189,90</h2>  
                   <p>Até 50 produtos</p>
-                  <p>Suporte Online (acesso remoto)+<br/>Publicidade no Google Ads*</p>
+                  <p>Suporte Online (videoconferência)+<br/>Publicidade no Google Ads*</p>
                   <a className="btn btn-lg btn-outline-primary" data-bs-toggle="modal" href="#md_assinatura" role="button">Assine Agora</a>
                 </div>
               </div>
@@ -175,9 +175,9 @@ function Planos() {
                     <div className="mb-2">
                       <label htmlFor="plano" className="form-label">Plano</label>
                       <select onChange={e => setPlanoAssinatura(e.target.value)} className="form-select" id="plano" value=""> 
-                        <option value="101">PLANO FREE somente até 3 Produtos (Demonstração) R$ 0,00</option>
-                        <option value="102">PLANO BASIC até 10 Produtos (Suporte Offline) R$ 49,90/mês</option>
-                        <option value="103">PLANO PRO até 50 Produtos (Suporte Online + Google Ads) R$ 99,90/mês</option>
+                        <option value="101">PLANO FREE até 03 produtos - Degustação (para testar)</option>
+                        <option value="102">PLANO BASIC até 10 Produtos - Suporte Offline (via e-mail) R$ 89,90/mês</option>
+                        <option value="103">PLANO PRO até 50 Produtos - Suporte Online (videoconferência) + Google Ads R$ 189,90/mês</option>
                       </select>
                       <input onChange={e => setSituacao(e.target.value)} type="hidden" id="status" name="status" value="ATIVO"/>
                       <input onChange={e => setUrlImagem(e.target.value)} type="hidden" id="urlimagem" name="urlimagem" value=""/>
@@ -247,11 +247,9 @@ function Planos() {
                       </div>
                     </div>
 
-                    <div className="row">
-                      <div className="col-8">
-                        <label htmlFor="endereco" className="form-label">Endereço</label>
-                        <input onChange={e => setEndereco(e.target.value)} type="text" className="form-control" id="endereco" />
-                      </div>
+                    <div className="mb-2">
+                      <label htmlFor="endereco" className="form-label">Endereço</label>
+                      <input onChange={e => setEndereco(e.target.value)} type="text" className="form-control" id="endereco" />
                     </div>
 
                     <div className="row">
@@ -268,9 +266,9 @@ function Planos() {
                     <div className="mb-2">
                       <p>Como obter as suas coordenadas no Google Maps:</p>
                       <p>
-                        1. No computador, abra o Google Maps.<br/>
-                        2. Clique com o botão direito do mouse no lugar ou na área no mapa. Uma janela pop-up será aberta. A latitude e a longitude vão aparecer no formato decimal na parte superior.<br/>
-                        3. Para copiar as coordenadas automaticamente, clique na latitude e longitude.
+                        1. No computador, abra o link abaixo para Google Maps.<br/>
+                        2. Digite o seu endereço na caixa de pesquisa (busca) do Mapa, será apontado um marcador (ícone na cor vermelha) que vc deverá clicar com o botao direito do mouse, ou tocar e aguardar abrir uma janela pop-up. A latitude e a longitude vão aparecer no formato decimal na parte superior.<br/>
+                        3. Para copiar as coordenadas automaticamente, clique (ou toque) na latitude e longitude informadas.
                       </p>
                       <p>* <a href="https://maps.google.com/" target="_blank" rel="noreferrer">Clique aqui</a> para acessar o Google Maps</p>
                     </div>
