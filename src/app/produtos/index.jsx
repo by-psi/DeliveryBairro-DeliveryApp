@@ -37,7 +37,30 @@ export default function Produtos() {
 
   const [file, setFile] = useState("https://via.placeholder.com/50x50");
 
-  function imgChange(e) {
+  // async function imgUpload() {
+  //   const { value: file } = await Swal.fire({
+  //     title: 'Select image',
+  //     input: 'file',
+  //     inputAttributes: {
+  //       'accept': 'image/*',
+  //       'aria-label': 'Upload your profile picture'
+  //     }
+  //   })
+
+  //   if (file) {
+  //     const reader = new FileReader()
+  //     reader.onload = (e) => {
+  //       Swal.fire({
+  //         title: 'Your uploaded picture',
+  //         imageUrl: e.target.result,
+  //         imageAlt: 'The uploaded picture'
+  //       })
+  //     }
+  //     reader.readAsDataURL(file)
+  //   }
+  // }
+
+  async function imgChange(e) {
     if (e.target.files[0]) {
       setFile(e.target.files[0]);
       setUrlImagem(URL.createObjectURL(e.target.files[0]));
