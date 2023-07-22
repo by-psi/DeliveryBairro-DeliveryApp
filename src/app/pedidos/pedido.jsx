@@ -9,9 +9,9 @@ export default function Pedido(props){
   const [visible, setVisible] = useState(true);
   
   function AlterarStatus(codigo) {
-    api.put(`/pedido/status/${props.PedidoID}`, {status: codigo})
+    api.put(`/update/status/pedido/${props.PedidoID}`, {status: codigo})
     .then((response) => {
-      // console.log(response);
+      console.log(response);
       setStatus(codigo);
       // SendNotification(props.token, props.PedidoID, status);
       if (status === "FINALIZADO") {
