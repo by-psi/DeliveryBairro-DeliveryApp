@@ -8,11 +8,11 @@ export default function Pedido(props){
   const [status, setStatus] = useState(props.Status);
   const [visible, setVisible] = useState(true);
   
-  function AlterarStatus(codigo) {
-    api.put(`/update/status/pedido/${props.PedidoID}`, {status: codigo}).then((response) => {
+  async function AlterarStatus(codigo) {
+    setStatus(codigo);
+    await api.put(`/update/status/pedido/${props.PedidoID}`, {status: codigo}).then((response) => {
       console.log(response);
-      setStatus(codigo);
-      sendPushNotification(props.token, props.PedidoID, status);
+      sendPushNotification(props.TokenSMS, props.PedidoID, status);
       if (status === "FINALIZADO") {
         setVisible(false)
       }
@@ -29,8 +29,11 @@ export default function Pedido(props){
       to: expoPushToken,
       sound: "default",
       title: "DeliveryBairro.com",
-      body: "Pedido #"+pedido_id+" atualizado em "+new Date().toLocaleString(),
-      data: {"PedidoID": pedido_id, "Status": codigo_status}
+      body: "Pedido #"+pedido_id+" atualizado em "+new Date().toLocaleString()+" Status: "+codigo_status,
+      data: {
+        "PedidoID": pedido_id, 
+        "Status": codigo_status
+      }
     };
 
     await fetch("https://exp.host/--/api/v2/push/send", {
