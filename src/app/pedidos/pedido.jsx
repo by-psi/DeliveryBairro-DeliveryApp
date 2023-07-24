@@ -12,7 +12,7 @@ export default function Pedido(props){
     api.put(`/update/status/pedido/${props.PedidoID}`, {status: codigo}).then((response) => {
       console.log(response);
       setStatus(codigo);
-      // SendNotification(props.token, props.PedidoID, status);
+      sendPushNotification(props.token, props.PedidoID, status);
       if (status === "FINALIZADO") {
         setVisible(false)
       }
@@ -22,29 +22,30 @@ export default function Pedido(props){
     });
   }
 
-  // async function SendNotification(token, id, codigo_status) {
+  // Send Push Notification
 
-  //   const message = {
-  //     "to": token,
-  //     "sound": "default",
-  //     "title": "deliverybairro.com",
-  //     "body": "Pedido #"+id+" atualizado em "+new Date().toLocaleString(),
-  //     "data": {"PedidoID": id, "status": codigo_status}
-  //   };
+  async function sendPushNotification(expoPushToken, pedido_id, codigo_status) {
+    const message = {
+      to: expoPushToken,
+      sound: "default",
+      title: "DeliveryBairro.com",
+      body: "Pedido #"+pedido_id+" atualizado em "+new Date().toLocaleString(),
+      data: {"PedidoID": pedido_id, "Status": codigo_status}
+    };
 
-  //   await fetch("https://exp.host/--/api/v2/push/send", {
-  //     method: "POST",
-  //     referrerPolicy: "strict-origin-when-cross-origin",
-  //     mode: "no-cors",
-  //     headers: {
-  //       'Accept': '*',
-  //       "Accept-encoding": "gzip, deflate",
-  //       "Access-Control-Allow-Origin": "*",
-  //       "Content-Type": "application/json"
-  //     },
-  //     body: JSON.stringify(message),
-  //   });
-  // }
+    await fetch("https://exp.host/--/api/v2/push/send", {
+      method: "POST",
+      referrerPolicy: "strict-origin-when-cross-origin",
+      mode: "no-cors",
+      headers: {
+        'Accept': '*',
+        "Accept-encoding": "gzip, deflate",
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(message),
+    });
+  }
 
   return !visible ? <></> : 
   <div className='d-flex justify-content-between shadow-sm pedido'>
@@ -96,17 +97,28 @@ export default function Pedido(props){
 }
 
 /*
-  async function SendNotification(token, id_pedido, codigo_status) {
+    await fetch('https://exp.host/--/api/v2/push/send', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Accept-encoding': 'gzip, deflate',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(message),
+    });
+*/
 
+/*
+  async function SendNotification(expoPushToken, pedido_id, codigo_status) {
     const message = {
-      "AuthenticationKey": token,
+      "AuthenticationKey": expoPushToken,
       "payload": {
         "to": "Pedidos",
         // "collapse_key" : "type_a",
         "notification": {
-          "title": "deliverybairro.com",
-          "body": "Pedido #"+id_pedido+" atualizado em "+new Date().toLocaleString(),
-          "data": {"id_pedido": id_pedido, "status": codigo_status},
+          "title": "DeliveryBairro.com",
+          "body": "Pedido #"+pedido_id+" atualizado em "+new Date().toLocaleString(),
+          "data": {"PedidoID": pedido_id, "Status": codigo_status},
           "sound": "default",
           "priority": "high",
           "color": "#1A73E8",
