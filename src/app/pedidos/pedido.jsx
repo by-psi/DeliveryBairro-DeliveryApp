@@ -4,10 +4,10 @@ import api from '../config/config.mysql';
 import './pedido.css';
 
 export default function Pedido(props){
-
   const [status, setStatus] = useState(props.Status);
   const [visible, setVisible] = useState(true);
-  
+  console.log(props.TokenSMS);
+
   async function AlterarStatus(codigo) {
     setStatus(codigo);
     await api.put(`/update/status/pedido/${props.PedidoID}`, {status: codigo}).then((response) => {
@@ -41,7 +41,7 @@ export default function Pedido(props){
       referrerPolicy: "strict-origin-when-cross-origin",
       mode: "no-cors",
       headers: {
-        'Accept': '*',
+        "Accept": "*",
         "Accept-encoding": "gzip, deflate",
         "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/json"
