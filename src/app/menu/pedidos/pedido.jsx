@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import api from '../config/config.mysql';
-
+import api from '../../../config/mysql';
 import './pedido.css';
 
 export default function Pedido(props){
   const [status, setStatus] = useState(props.Status);
   const [visible, setVisible] = useState(true);
+
   console.log(props.TokenSMS);
 
   async function AlterarStatus(codigo) {
@@ -68,7 +68,7 @@ export default function Pedido(props){
       <small className='d-block mt-1 text-secondary'>{props.Cliente} - {props.Endereco}</small>
       <small className='d-block mt-1 text-secondary'>{props.token}</small>
       {
-        props.itens.map((item) => {
+        props.itens?.map((item) => {
           return <div className='d-inline-block text-center me-4 mt-2' key={item.ItemID} >
             <img src={item.UrlImagem} className='foto-item' alt='' />
             <small className='d-block text-secondary'>{item.Qtd} x</small>
@@ -98,50 +98,3 @@ export default function Pedido(props){
     
   </div>
 }
-
-/*
-    await fetch('https://exp.host/--/api/v2/push/send', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Accept-encoding': 'gzip, deflate',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(message),
-    });
-*/
-
-/*
-  async function SendNotification(expoPushToken, pedido_id, codigo_status) {
-    const message = {
-      "AuthenticationKey": expoPushToken,
-      "payload": {
-        "to": "Pedidos",
-        // "collapse_key" : "type_a",
-        "notification": {
-          "title": "DeliveryBairro.com",
-          "body": "Pedido #"+pedido_id+" atualizado em "+new Date().toLocaleString(),
-          "data": {"PedidoID": pedido_id, "Status": codigo_status},
-          "sound": "default",
-          "priority": "high",
-          "color": "#1A73E8",
-          // "tag": "app"
-        }
-      }
-    };
-
-    await fetch("https://fcm.googleapis.com/fcm/send", {
-      method: "POST",
-      referrerPolicy: "strict-origin-when-cross-origin",
-      mode: "no-cors",
-      headers: {
-        'Accept': '*',
-        "Accept-encoding": "gzip, deflate",
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(message),
-    });
-  }
-
-*/

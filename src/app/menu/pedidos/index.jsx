@@ -1,13 +1,13 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Menu from "../../components/menu";
 import Pedido from "./pedido";
 import './index.css';
 
-import api from '../config/config.mysql';
+import api from "../../../config/mysql";
 
 export default function Pedidos() {
-  const vDelivery = "SANDUBA DO ZÉ"; // localStorage.getItem("delivery");
-  const vToken = 1002; // localStorage.getItem("token");
+  let vDelivery = localStorage.getItem("delivery");
+  let vToken = localStorage.getItem("token");
 
   const [pedidos, setPedidos] = useState(null);
 
@@ -20,6 +20,7 @@ export default function Pedidos() {
       await api.get(`/pedidos/abertos/delivery/${vToken}`) 
       .then((response) => {
         setPedidos(response.data);
+        // console.log(response.data);
         console.count = 0;
       })
       .catch((error)=>{
@@ -63,5 +64,3 @@ export default function Pedidos() {
     </div>
   </>
 }
-
-// eslint-disable-next-line react-hooks/exhaustive-deps

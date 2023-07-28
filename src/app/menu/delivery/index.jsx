@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { redirect } from "react-router-dom";
+import { Redirect } from 'react-router-dom';
 import Menu from "../../components/menu";
 import './index.css';
 
-import api from '../../app/config/config.mysql';
+import api from "../../../config/mysql";
 
-function Delivery() {
-  const vDelivery = "SANDUBA DO ZÉ"; // localStorage.getItem("delivery");
-  const vToken = 1002; // localStorage.getItem("token");
+export default function Delivery() {
+  const vDelivery = localStorage.getItem("delivery");
+  const vToken = localStorage.getItem("token");
 
   const [delivery, setDelivery] = useState([]);
 
@@ -238,7 +238,7 @@ function Delivery() {
                 <input onChange={e => setTokenADM(e.target.value)} value={token} type="hidden" id="token" name="token" />
 
                 {msg.length > 0 ? <div className="alert alert-danger mt-2" role="alert">{msg}</div> : null}
-                {success === 'S' ? redirect("/") : null}
+                {success === 'S' ? <Redirect to='/pedidos'/> : null}
 
               </div>
             </form>
@@ -253,5 +253,3 @@ function Delivery() {
     </div>
   )
 }
-
-export default Delivery;

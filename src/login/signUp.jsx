@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { Link, redirect } from 'react-router-dom';
-import { firebase_app } from '../config/config.firebase';
+import { Link, Redirect } from 'react-router-dom';
+import { firebase_app } from '../config/firebase';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { getDatabase, ref, set } from "firebase/database";
-import './novo.css';
+import './signUp.css';
 
-function Novo() {
+export default function signUp() {
   let vEmail = localStorage.getItem("email");
   let vDelivery = localStorage.getItem("delivery");
   let vToken = localStorage.getItem("token");
@@ -35,7 +35,7 @@ function Novo() {
     await createUserWithEmailAndPassword(auth, email, password).then(async(value) => {
       let uid = value.user.uid;
       console.log("UserID: ", uid);
-      set(ref(database, 'users/' + uid), {
+      await set(ref(database, 'users/' + uid), {
         delivery: delivery,
         token: token
       });
@@ -63,7 +63,7 @@ function Novo() {
     <div className="d-flex align-items-center text-center form-container">
       <form className="form-signin">
       <a href="/#">
-          <img className="mb-4" src="/imagens/logo.png" alt="" />
+          <img className="mb-4" src="/images/logo.png" alt="" />
         </a>
 
         <div className="form-floating mt-2">
@@ -88,16 +88,14 @@ function Novo() {
         </div> 
 
         <div className="form-links">
-          <Link to="/app" className="mx-3">Já tenho uma conta</Link>
+          <Link to="/signin" className="mx-3">Já tenho uma conta</Link>
         </div>
 
         <button onClick={e => RegisterNewUser(vDelivery, vToken)} className="w-100 btn btn-lg btn-dark mt-2" type="button">CADASTRAR ACESSO</button>
         {message.length > 0 ? <div className="alert alert-danger mt-2" role="alert">{message}</div> : null}
-        {result === 'S' ? redirect('/app/pedidos') : null}
+        {result === 'S' ? <Redirect to='/pedidos' /> : null}
         <p>&copy; 1999-{ano} PSI-SOFTWARE</p>
       </form>
     </div>
   );
 }
-
-export default Novo;

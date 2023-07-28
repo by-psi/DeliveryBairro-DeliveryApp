@@ -1,22 +1,22 @@
-import './index.css';
-import { useState, useEffect } from 'react';
-import { Link, redirect } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, Redirect } from 'react-router-dom';
 import { Impressao } from './impressao';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { firebase_app } from "../config/config.firebase";
+import { firebase_app } from "../../../config/firebase";
 import Swal from 'sweetalert2';
 import Menu from "../../components/menu";
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
+import './index.css';
 
-import api from '../config/config.mysql';
+import api from "../../../config/mysql";
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 export default function Produtos() {
   const storage = getStorage(firebase_app);
-  const vDelivery = "SANDUBA DO ZÉ"; // localStorage.getItem("delivery");
-  const vToken = 1002; // localStorage.getItem("token");
+  const vDelivery = localStorage.getItem("delivery");
+  const vToken = localStorage.getItem("token");
 
   const [busca, setBusca] = useState('');
   const [excluido, setExcluido] = useState('');
@@ -348,7 +348,7 @@ export default function Produtos() {
                       </div>
 
                       {msg.length > 0 ? <div className="alert alert-danger mt-2" role="alert">{msg}</div> : null}
-                      {success === 'S' ? redirect('/app/produtos/') : null}
+                      {success === 'S' ? <Redirect to='/produtos' /> : null}
                     </div>
                   </form>
                 </div>
@@ -398,7 +398,7 @@ export default function Produtos() {
                       </div>
 
                       {msg.length > 0 ? <div className="alert alert-danger mt-2" role="alert">{msg}</div> : null}
-                      {success === 'S' ? redirect('/app/produtos/') : null}
+                      {success === 'S' ? <Redirect to='/produtos' /> : null}
 
                     </div>
                   </form>
